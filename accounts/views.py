@@ -12,7 +12,6 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required
 def home(request):
     numbers = [1,2,3,4,5]
     name = 'Alexei Rodriguez'
@@ -31,12 +30,10 @@ def register(request):
         args = {'form': form}
         return render(request, 'accounts/reg_form.html', args)
 
-@login_required
 def view_profile(request):
     args = {'user': request.user}
     return render(request, 'accounts/profile.html', args)
 
-@login_required
 def edit_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
